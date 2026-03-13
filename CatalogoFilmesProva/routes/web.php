@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiretorController;
 use App\Http\Controllers\FilmeController;
+use App\Http\Controllers\AvaliacaoController;
 use App\Models\Diretor;
 use App\Models\Filme;
+use App\Models\Avaliacao;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index12');
 });
 
 Route::get('/diretores', [DiretorController::class, 'index'])->name('diretores.index');
@@ -22,6 +24,14 @@ Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('/filmes/create', [FilmeController::class, 'create'])->name('filmes.create');
 Route::post('/filmes', [FilmeController::class, 'store'])->name('filmes.store');
 //Route::delete('/filmes/{id}', [FilmeController::class, 'destroy'])->name('filmes.destroy');
-//Route::search('/filmes/{id}', [FilmeController::class, 'search'])->name('filmes.search');
+//Route::search('/filmes/{id}', [ FilmeController::class, 'search'])->name('filmes.search');
 //Route::get('/filmes/{id}/edit', [FilmeController::class, 'edit'])->name('filmes.edit');
+//Route::put('/filmes/{id}', [FilmeController::class, 'update'])->name('filmes.update');
+
+Route::get('/avaliacoes', [AvaliacaoController::class, 'index'])->name('avaliacoes.index');
+Route::get('/avaliacoes/create', [AvaliacaoController::class, 'create'])->name('avaliacoes.create');
+Route::post('/avaliacoes', [AvaliacaoController::class, 'store'])->name('avaliacoes.store');
+//Route::delete('/avaliacoes/{id}', [AvaliacaoController::class, 'destroy'])->name('avaliacoes.destroy');
+//Route::search('/avaliacoes/{id}', [AvaliacaoController::class, 'search'])->name('avaliacoes.search');
+//Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
 //Route::put('/filmes/{id}', [FilmeController::class, 'update'])->name('filmes.update');

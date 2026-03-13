@@ -25,7 +25,7 @@ class FilmeController extends Controller
     $diretores = Diretor::all();
     return view('filmes.form', ['diretores' => $diretores]);
 }
-    }
+
 
     function store(Request $request)
     {
@@ -102,4 +102,4 @@ class FilmeController extends Controller
 
         return view('filmes.list', ['dados' => $dados]);
     }
-
+    }
