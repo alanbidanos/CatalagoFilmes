@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nome',100);
             $table->string('nascimento',20);
             $table->string('idade',20);
-            $table->string('pais',20);
+            $table->string('pais',40);
             $table->timestamps();
         });
     }
