@@ -3,81 +3,89 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Diretor;
 
 class DiretorController extends Controller
-
 {
 
     function index()
     {
-        $dados = Aluno::all(); //select * from aluno
+        $dados = Diretor::all(); //select * from aluno
 
         // dd($dados);
         //var_dump($dados);
         //  exit;
 
-        return view('aluno.list', ['dados' => $dados]);
+        return view('diretores.list', ['dados' => $dados]);
     }
 
     function create()
     {
-        return view('aluno.form');
+        return view('diretores.form');
     }
 
     function store(Request $request)
     {
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required',
+            'nascimento' => 'required',
+            'idade' => 'required',
+            'pais' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
-            'cpf' => "O :attribute é obrigatório",
+            'nascimento' => "O :attribute é obrigatório",
+            'idade' => "O :attribute é obrigatório",
+            'pais' => "O :attribute é obrigatório",
         ]);
 
-        Aluno::create($request->all());
+        Diretor::create($request->all());
 
-        return redirect('aluno');
+        return redirect('diretores');
     }
 
     function edit($id)
     {
-        $dado = Aluno::find($id);
-        return view('aluno.form', ['dado' => $dado]);
+        $dado = Diretor::find($id);
+        return view('diretores.form', ['dado' => $dado]);
     }
 
     function update(Request $request, $id)
     {
         $request->validate([
             'nome' => 'required',
-            'cpf' => 'required',
+            'nascimento' => 'required',
+            'idade' => 'required',
+            'pais_origem' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
-            'cpf' => "O :attribute é obrigatório",
+            'nascimento' => "O :attribute é obrigatório",
+            'idade' => "O :attribute é obrigatório",
+            'pais_origem' => "O :attribute é obrigatório",
         ]);
 
-        Aluno::find($id)->update($request->all());
+        Diretor::find($id)->update($request->all());
 
-        return redirect('aluno');
+        return redirect('diretores');
     }
 
     function destroy($id)
     {
-        Aluno::destroy($id);
-        return redirect('aluno');
+        Diretor::destroy($id);
+        return redirect('diretores');
     }
 
     function search(Request $request)
     {
         if (!empty($request->valor)) {
-            $dados = Aluno::where(
+            $dados = Diretor::where(
                 $request->tipo,
                 'like',
                 '%' . $request->valor . '%'
             )->get();
         } else {
-            $dados = Aluno::all();
+            $dados = Diretor::all();
         }
 
-        return view('aluno.list', ['dados' => $dados]);
+        return view('diretores.list', ['dados' => $dados]);
     }
 }
