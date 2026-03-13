@@ -55,12 +55,12 @@ class DiretorController extends Controller
             'nome' => 'required',
             'nascimento' => 'required',
             'idade' => 'required',
-            'pais_origem' => 'required',
+            'pais' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
             'nascimento' => "O :attribute é obrigatório",
             'idade' => "O :attribute é obrigatório",
-            'pais_origem' => "O :attribute é obrigatório",
+            'pais' => "O :attribute é obrigatório",
         ]);
 
         Diretor::find($id)->update($request->all());
