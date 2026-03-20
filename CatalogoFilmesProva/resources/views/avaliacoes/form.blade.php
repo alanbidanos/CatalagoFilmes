@@ -21,7 +21,7 @@
             <input type="hidden" name="id" value="{{ $dado->id ?? '' }}">
             <div class="col">
                 <label for="usuario" class="form-label">Usuário</label>
-                <input type="text" class="form-control" name="usuario" value="{{ old('usuario', $dado->usuario ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="usuario" value="{{ old('usuario', $dado->usuario ?? '') }}">
             </div>
             <div class="col">
                 <label for="filmes_id" class="form-label">Filme</label>
@@ -36,11 +36,11 @@
             </div>
             <div class="col">
                 <label class="form-label" for="comentario">Comentário</label>
-                <input type="text" class="form-control" name="comentario" value="{{ old('comentario', $dado->comentario ?? '') }}">
+                <input type="text" autocomplete="off"  class="form-control" name="comentario" value="{{ old('comentario', $dado->comentario ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="nota">Nota</label>
-                <input type="text" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
             </div>
 
         </div>

@@ -21,7 +21,7 @@
             <input type="hidden" name="id" value="{{ $dado->id ?? '' }}">
             <div class="col">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="nome" value="{{ old('nome', $dado->nome ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="nome" value="{{ old('nome', $dado->nome ?? '') }}">
             </div>
 
             <div class="row">
@@ -38,20 +38,20 @@
 
             <div class="col">
                 <label for="ano" class="form-label">Ano</label>
-                <input type="text" class="form-control" name="ano" value="{{ old('ano', $dado->ano ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="ano" value="{{ old('ano', $dado->ano ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="duracao">Duração</label>
-                <input type="text" class="form-control" name="duracao"
+                <input type="text" autocomplete="off" class="form-control" name="duracao"
                     value="{{ old('duracao', $dado->duracao ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="nota">Nota</label>
-                <input type="text" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="genero">Gênero</label>
-                <input type="text" class="form-control" name="genero" value="{{ old('genero', $dado->genero ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="genero" value="{{ old('genero', $dado->genero ?? '') }}">
             </div>
             <div class="col">
                 <label for="diretores_id" class="form-label">Diretor</label>

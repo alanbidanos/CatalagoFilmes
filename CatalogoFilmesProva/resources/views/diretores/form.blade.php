@@ -21,7 +21,7 @@
             <input type="hidden" name="id" value="{{ $dado->id ?? '' }}">
             <div class="col">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" name="nome" value="{{ old('nome', $dado->nome ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="nome" value="{{ old('nome', $dado->nome ?? '') }}">
             </div>
             <div class="row">
                 <div class="col">
@@ -34,16 +34,16 @@
             </div>
             <div class="col">
                 <label for="nascimento" class="form-label">Nascimento</label>
-                <input type="text" class="form-control" name="nascimento"
+                <input type="text" autocomplete="off" class="form-control" name="nascimento"
                     value="{{ old('nascimento', $dado->nascimento ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="idade">Idade</label>
-                <input type="text" class="form-control" name="idade" value="{{ old('idade', $dado->idade ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="idade" value="{{ old('idade', $dado->idade ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="pais">País de origem</label>
-                <input type="text" class="form-control" name="pais" value="{{ old('pais', $dado->pais ?? '') }}">
+                <input type="text" autocomplete="off" class="form-control" name="pais" value="{{ old('pais', $dado->pais ?? '') }}">
             </div>
         </div>
         <div class="row">

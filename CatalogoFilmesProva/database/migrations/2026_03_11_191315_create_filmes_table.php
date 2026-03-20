@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('filmes', function (Blueprint $table) {
     $table->id();
-    $table->string('nome',100);
+    $table->string('nome',200);
     $table->string('capa',255)->nullable();
-    $table->string('ano',4);
-    $table->string('duracao',20);
-    $table->string('nota',20);
-    $table->string('genero',20);
+    $table->string('ano',200);
+    $table->string('duracao',200);
+    $table->string('nota',200);
+    $table->string('genero',200);
 
     $table->foreignId('diretores_id')
           ->constrained('diretores')

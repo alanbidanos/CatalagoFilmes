@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('avaliacao', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario', 100);
+            $table->string('usuario', 200);
 
             $table->foreignId('filmes_id')
                 ->constrained('filmes')
                 ->onDelete('cascade');
 
             $table->string('comentario', 1024);
-            $table->string('nota', 20);
+            $table->string('nota', 200);
 
             $table->timestamps();
         });
