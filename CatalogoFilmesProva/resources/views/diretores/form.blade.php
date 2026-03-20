@@ -34,12 +34,12 @@
             </div>
             <div class="col">
                 <label for="nascimento" class="form-label">Nascimento</label>
-                <input type="text" autocomplete="off" class="form-control" name="nascimento"
+                <input type="date" autocomplete="off" class="form-control"  pattern="\d{4}-\d{2}-\d{2}" required name="nascimento"
                     value="{{ old('nascimento', $dado->nascimento ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="idade">Idade</label>
-                <input type="text" autocomplete="off" class="form-control" name="idade" value="{{ old('idade', $dado->idade ?? '') }}">
+                <input type="number" autocomplete="off" class="form-control" name="idade" value="{{ old('idade', $dado->idade ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="pais">País de origem</label>

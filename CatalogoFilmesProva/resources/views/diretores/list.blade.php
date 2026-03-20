@@ -49,7 +49,7 @@
                 <tbody>
                     @foreach ($dados as $item)
                         @php
-                            $nome_foto = !empty($item->foto) ? $item->foto : 'sem_imagem.jpeg';
+                            $nome_foto = !empty($item->foto) ? $item->foto : '\imagem\diretores\sem-imagem.jpeg';
                         @endphp
 
                         <tr>

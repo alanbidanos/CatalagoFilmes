@@ -54,7 +54,7 @@
                 <tbody>
                     @foreach ($dados as $item)
                         @php
-                            $nome_foto = !empty($item->capa) ? $item->capa : 'sem_imagem.jpeg';
+                            $nome_foto = !empty($item->capa) ? $item->capa : '\imagem\filme\sem-imagem.jpeg';
                         @endphp
 
                         <tr>

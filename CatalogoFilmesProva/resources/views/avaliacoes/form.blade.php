@@ -25,7 +25,7 @@
             </div>
             <div class="col">
                 <label for="filmes_id" class="form-label">Filme</label>
-                <select class="form-control" name="filmes_id">
+                <select class="form-select" name="filmes_id">
                     <option value="">Selecione um filme</option>
                     @foreach ($filmes as $filme)
                         <option value="{{ $filme->id }}" {{ old('filmes_id', $dado->filmes_id ?? '') == $filme->id ? 'selected' : '' }}>
@@ -40,7 +40,7 @@
             </div>
             <div class="col">
                 <label class="form-label" for="nota">Nota</label>
-                <input type="text" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
+                <input type="number" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
             </div>
 
         </div>

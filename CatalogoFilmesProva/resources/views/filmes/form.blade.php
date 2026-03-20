@@ -38,16 +38,16 @@
 
             <div class="col">
                 <label for="ano" class="form-label">Ano</label>
-                <input type="text" autocomplete="off" class="form-control" name="ano" value="{{ old('ano', $dado->ano ?? '') }}">
+                <input type="number" autocomplete="off" class="form-control" name="ano" value="{{ old('ano', $dado->ano ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="duracao">Duração</label>
-                <input type="text" autocomplete="off" class="form-control" name="duracao"
+                <input type="time" autocomplete="off" class="form-control" name="duracao"
                     value="{{ old('duracao', $dado->duracao ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="nota">Nota</label>
-                <input type="text" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
+                <input type="number" autocomplete="off" class="form-control" name="nota" value="{{ old('nota', $dado->nota ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="genero">Gênero</label>
@@ -55,7 +55,7 @@
             </div>
             <div class="col">
                 <label for="diretores_id" class="form-label">Diretor</label>
-                <select class="form-control" name="diretores_id">
+                <select class="form-select" name="diretores_id">
                     <option value="">Selecione um diretor</option>
                     @foreach ($diretores as $diretor)
                         <option value="{{ $diretor->id }}"
