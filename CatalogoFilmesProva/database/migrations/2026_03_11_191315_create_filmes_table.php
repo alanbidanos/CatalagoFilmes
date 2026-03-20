@@ -12,15 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('filmes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome',100);
-            $table->string('ano',4);
-            $table->string('duracao',20);
-            $table->string('nota',20);
-            $table->string('genero',20);
-            $table->foreignId('diretores_id')->constrained('diretores');
-            $table->timestamps();
-        });
+    $table->id();
+    $table->string('nome',100);
+    $table->string('capa',255)->nullable();
+    $table->string('ano',4);
+    $table->string('duracao',20);
+    $table->string('nota',20);
+    $table->string('genero',20);
+
+    $table->foreignId('diretores_id')
+          ->constrained('diretores')
+          ->onDelete('cascade');
+
+    $table->timestamps();
+});
     }
 
     /**

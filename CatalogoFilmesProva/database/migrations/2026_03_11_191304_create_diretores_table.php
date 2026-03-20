@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('diretores', function (Blueprint $table) {
             $table->id();
             $table->string('nome',100);
+            $table->string('foto',255)->nullable();
             $table->string('nascimento',20);
             $table->string('idade',20);
             $table->string('pais',100);

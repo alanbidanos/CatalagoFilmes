@@ -12,6 +12,7 @@ class FilmeFactory extends Factory
     {
         return [
             'nome' => $this->faker->name,
+            'capa' => null,
             'ano' => $this->faker->numberBetween(1950, 2026),
             'duracao' => $this->faker->time('H:i:s'),
             'nota' => $this->faker->numberBetween(1, 10),

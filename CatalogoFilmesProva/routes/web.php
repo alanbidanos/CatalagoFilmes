@@ -15,23 +15,30 @@ Route::get('/', function () {
 Route::get('/diretores', [DiretorController::class, 'index'])->name('diretores.index');
 Route::get('/diretores/create', [DiretorController::class, 'create'])->name('diretores.create');
 Route::post('/diretores', [DiretorController::class, 'store'])->name('diretores.store');
-//Route::delete('/diretores/{id}', [DiretorController::class, 'destroy'])->name('diretores.destroy');
-//oute::search('/diretores/{id}', [DiretorController::class, 'search'])->name('diretores.search');
-//Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit'])->name('diretores.edit');
-//Route::put('/diretores/{id}', [DiretorController::class, 'update'])->name('diretores.update');
+Route::delete('/diretores/{id}', [DiretorController::class, 'destroy'])
+    ->name('diretores.destroy');
+Route::post('/diretores/search', [DiretorController::class, 'search'])->name('diretores.search');
+Route::get('/diretores/{id}/edit', [DiretorController::class, 'edit'])->name('diretores.edit');
+Route::put('/diretores/{id}', [DiretorController::class, 'update'])->name('diretores.update');
+
+
 
 Route::get('/filmes', [FilmeController::class, 'index'])->name('filmes.index');
 Route::get('/filmes/create', [FilmeController::class, 'create'])->name('filmes.create');
 Route::post('/filmes', [FilmeController::class, 'store'])->name('filmes.store');
-//Route::delete('/filmes/{id}', [FilmeController::class, 'destroy'])->name('filmes.destroy');
-//Route::search('/filmes/{id}', [ FilmeController::class, 'search'])->name('filmes.search');
-//Route::get('/filmes/{id}/edit', [FilmeController::class, 'edit'])->name('filmes.edit');
-//Route::put('/filmes/{id}', [FilmeController::class, 'update'])->name('filmes.update');
+Route::delete('/filmes/{id}', [FilmeController::class, 'destroy'])
+   ->name('filmes.destroy');
+Route::post('/filmes/search', [FilmeController::class, 'search'])->name('filmes.search');
+Route::get('/filmes/{id}/edit', [FilmeController::class, 'edit'])->name('filmes.edit');
+Route::put('/filmes/{id}', [FilmeController::class, 'update'])->name('filmes.update');
+
+
 
 Route::get('/avaliacoes', [AvaliacaoController::class, 'index'])->name('avaliacoes.index');
 Route::get('/avaliacoes/create', [AvaliacaoController::class, 'create'])->name('avaliacoes.create');
 Route::post('/avaliacoes', [AvaliacaoController::class, 'store'])->name('avaliacoes.store');
-//Route::delete('/avaliacoes/{id}', [AvaliacaoController::class, 'destroy'])->name('avaliacoes.destroy');
-//Route::search('/avaliacoes/{id}', [AvaliacaoController::class, 'search'])->name('avaliacoes.search');
-//Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
-//Route::put('/filmes/{id}', [FilmeController::class, 'update'])->name('filmes.update');
+Route::delete('/avaliacoes/{id}', [AvaliacaoController::class, 'destroy'])
+    ->name('avaliacoes.destroy');
+Route::post('/avaliacoes/search', [AvaliacaoController::class, 'search'])->name('avaliacoes.search');
+Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
+Route::put('/avaliacoes/{id}', [AvaliacaoController::class, 'update'])->name('avaliacoes.update');

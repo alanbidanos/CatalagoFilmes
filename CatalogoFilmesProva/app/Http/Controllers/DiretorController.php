@@ -28,17 +28,30 @@ class DiretorController extends Controller
     {
         $request->validate([
             'nome' => 'required',
+            'foto' => 'nullable|image',
             'nascimento' => 'required',
             'idade' => 'required',
             'pais' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
+            'foto' => "O :attribute é obrigatório",
             'nascimento' => "O :attribute é obrigatório",
             'idade' => "O :attribute é obrigatório",
             'pais' => "O :attribute é obrigatório",
         ]);
 
-        Diretor::create($request->all());
+         $data = $request->all();
+        $foto = $request->file('foto');
+
+        if ($foto) {
+            $nome_foto = date('YmdiHs') . "." . $foto->getClientOriginalExtension();
+            $diretorio = "imagem/diretores/";
+            $foto->storeAs($diretorio, $nome_foto, 'public');
+
+            $data['foto'] = $diretorio . $nome_foto;
+        }
+
+        Diretor::create($data);
 
         return redirect('diretores');
     }
@@ -53,18 +66,30 @@ class DiretorController extends Controller
     {
         $request->validate([
             'nome' => 'required',
+            'foto' => 'nullable|image',
             'nascimento' => 'required',
             'idade' => 'required',
             'pais' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
+            'foto' => "O :attribute não é obrigatório",
             'nascimento' => "O :attribute é obrigatório",
             'idade' => "O :attribute é obrigatório",
             'pais' => "O :attribute é obrigatório",
         ]);
 
-        Diretor::find($id)->update($request->all());
+        $data = $request->all();
+        $foto = $request->file('foto');
 
+        if ($foto) {
+            $nome_foto = date('YmdiHs') . "." . $foto->getClientOriginalExtension();
+            $diretorio = "imagem/diretores/";
+            $foto->storeAs($diretorio, $nome_foto, 'public');
+
+            $data['foto'] = $diretorio . $nome_foto;
+        }
+
+        Diretor::find($id)->update($data);
         return redirect('diretores');
     }
 

@@ -15,4 +15,11 @@ class Avaliacao extends Model
         'comentario',
         'nota'
     ];
+
+    public function filme()
+    {
+        return $this->belongsTo(Filme::class, 'filmes_id');
+    }
+
 }
+

@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('avaliacao', function (Blueprint $table) {
+        Schema::create('avaliacao', function (Blueprint $table) {
             $table->id();
-            $table->string('usuario',100);
-            $table->foreignId('filmes_id')->constrained('filmes');
-            $table->string('comentario',1024);
-            $table->string('nota',20);
+            $table->string('usuario', 100);
+
+            $table->foreignId('filmes_id')
+                ->constrained('filmes')
+                ->onDelete('cascade');
+
+            $table->string('comentario', 1024);
+            $table->string('nota', 20);
+
             $table->timestamps();
         });
     }

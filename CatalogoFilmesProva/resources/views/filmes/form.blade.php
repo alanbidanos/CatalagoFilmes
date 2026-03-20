@@ -12,7 +12,7 @@
         }
     @endphp
 
-    <form action="{{ $action }}" method="POST">
+    <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if (!empty($dado->id))
             @method('PUT')
@@ -23,14 +23,27 @@
                 <label for="nome" class="form-label">Nome</label>
                 <input type="text" class="form-control" name="nome" value="{{ old('nome', $dado->nome ?? '') }}">
             </div>
+
+            <div class="row">
+                <div class="col">
+                <label class="form-label" for="imagem">Capa</label>
+                @php
+                    $nome_capa = !empty($dado->capa) ? $dado->capa : 'imagem/filmes/sem-imagem.jpeg';
+                @endphp
+                <img src="/storage/{{ $nome_capa }}" class="rounded-circle" width="200px" height="200px" alt="capa">
+                <input type="file" name="capa" class="form-control" value="{{ old('capa', $dado->capa ?? '') }}">
+            </div>
+
+            </div>
+
             <div class="col">
                 <label for="ano" class="form-label">Ano</label>
-                <input type="text" class="form-control" name="ano"
-                    value="{{ old('ano', $dado->ano ?? '') }}">
+                <input type="text" class="form-control" name="ano" value="{{ old('ano', $dado->ano ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="duracao">Duração</label>
-                <input type="text" class="form-control" name="duracao" value="{{ old('duracao', $dado->duracao ?? '') }}">
+                <input type="text" class="form-control" name="duracao"
+                    value="{{ old('duracao', $dado->duracao ?? '') }}">
             </div>
             <div class="col">
                 <label class="form-label" for="nota">Nota</label>
@@ -45,7 +58,8 @@
                 <select class="form-control" name="diretores_id">
                     <option value="">Selecione um diretor</option>
                     @foreach ($diretores as $diretor)
-                        <option value="{{ $diretor->id }}" {{ old('diretores_id', $dado->diretores_id ?? '') == $diretor->id ? 'selected' : '' }}>
+                        <option value="{{ $diretor->id }}"
+                            {{ old('diretores_id', $dado->diretores_id ?? '') == $diretor->id ? 'selected' : '' }}>
                             {{ $diretor->nome }}
                         </option>
                     @endforeach

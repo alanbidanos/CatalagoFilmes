@@ -12,6 +12,7 @@ class DiretorFactory extends Factory
         $nascimento = $this->faker->numberBetween(1900, 2026);
         return [
             'nome' => $this->faker->name,
+            'foto' => null,
             'nascimento' => $nascimento,
             'idade' => now()->year - $nascimento,
             'pais' => $this->faker->country,

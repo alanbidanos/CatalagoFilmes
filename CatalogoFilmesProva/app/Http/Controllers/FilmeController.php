@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Filme;
 use App\Models\Diretor;
 
@@ -20,17 +21,19 @@ class FilmeController extends Controller
         return view('filmes.list', ['dados' => $dados]);
     }
 
-        function create()
-{
-    $diretores = Diretor::all();
-    return view('filmes.form', ['diretores' => $diretores]);
-}
+    function create()
+    {
+        $diretores = Diretor::all();
+        return view('filmes.form', ['diretores' => $diretores]);
+    }
 
 
     function store(Request $request)
     {
+
         $request->validate([
             'nome' => 'required',
+            'capa' => 'nullable|image',
             'ano' => 'required',
             'duracao' => 'required',
             'nota' => 'required',
@@ -38,38 +41,53 @@ class FilmeController extends Controller
             'diretores_id' => 'required'
         ], [
             'nome' => "O :attribute é obrigatório",
+            'capa' => "O :attribute é obrigatório",
             'ano' => "O :attribute é obrigatório",
             'duracao' => "O :attribute é obrigatório",
             'nota' => "O :attribute é obrigatório",
             'genero' => "O :attribute é obrigatório",
             'diretores_id' => "O :attribute é obrigatório"
         ]);
-        Filme::create($request->all());
+
+        $data = $request->all();
+        $capa = $request->file('capa');
+
+        if ($capa) {
+            $nome_capa = date('YmdiHs') . "." . $capa->getClientOriginalExtension();
+            $diretorio = "imagem/filme/";
+            $capa->storeAs($diretorio, $nome_capa, 'public');
+
+            $data['capa'] = $diretorio . $nome_capa;
+        }
+
+        Filme::create($data);
 
         return redirect('filmes');
     }
 
     function edit($id)
-{
-    $dado = Filme::find($id);
-    $diretores = Diretor::all();
+    {
+        $dado = Filme::find($id);
+        $diretores = Diretor::all();
 
-    return view('filmes.form', [
-        'dado' => $dado,
-        'diretores' => $diretores
-    ]);
-}
+        return view('filmes.form', [
+            'dado' => $dado,
+            'diretores' => $diretores
+        ]);
+    }
     function update(Request $request, $id)
     {
         $request->validate([
-        'nome' => 'required',
-        'ano' => 'required',
-        'duracao' => 'required',
-        'nota' => 'required',
-        'genero' => 'required',
-        'diretores_id' => 'required'
+            'nome' => 'required',
+            'foto' => 'nullable|image',
+            'ano' => 'required',
+            'duracao' => 'required',
+            'nota' => 'required',
+            'genero' => 'required',
+            'diretores_id' => 'required'
         ], [
             'nome' => "O :attribute é obrigatório",
+            'capa' => "O :attribute não é obrigatório",
             'ano' => "O :attribute é obrigatório",
             'duracao' => "O :attribute é obrigatório",
             'nota' => "O :attribute é obrigatório",
@@ -77,9 +95,21 @@ class FilmeController extends Controller
             'diretores_id' => "O :attribute é obrigatório"
         ]);
 
-        Filme::find($id)->update($request->all());
+        $data = $request->all();
 
-    return redirect('filmes');
+        if ($request->hasFile('capa')) {
+            $capa = $request->file('capa');
+            $nome_capa = date('YmdHis') . "." . $capa->getClientOriginalExtension();
+            $diretorio = "imagem/filmes/";
+
+            $capa->storeAs($diretorio, $nome_capa, 'public');
+
+            $data['capa'] = $diretorio . $nome_capa;
+        }
+
+        Filme::find($id)->update($data);
+
+        return redirect('filmes');
     }
 
     function destroy($id)
@@ -102,4 +132,4 @@ class FilmeController extends Controller
 
         return view('filmes.list', ['dados' => $dados]);
     }
-    }
+}

@@ -11,6 +11,7 @@ class Diretor extends Model
     use HasFactory;
     protected $fillable = [
         'nome',
+        'foto',
         'nascimento',
         'idade',
         'pais'

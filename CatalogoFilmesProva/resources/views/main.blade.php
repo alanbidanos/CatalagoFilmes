@@ -10,9 +10,17 @@
 </head>
 
 <body>
+
+
     <!-- header> -->
-    <header>
-    </header>
+<header>
+    <a href="{{ route('diretores.index') }}">Diretores</a>
+    <a href="{{ route('filmes.index') }}">Filmes</a>
+    <a href="{{ route('avaliacoes.index') }}">Avaliações</a>
+</header>
+
+
+
     <!-- principal-->
     <main>
         <div class="container mt-4">
