@@ -82,17 +82,26 @@ class AvaliacaoController extends Controller
     }
 
     function search(Request $request)
-    {
-        if (!empty($request->valor)) {
+{
+    if (!empty($request->valor)) {
+
+        if ($request->tipo == 'filmes_id') {
+            $dados = Avaliacao::whereHas('filme', function ($query) use ($request) {
+                $query->where('nome', 'like', '%' . $request->valor . '%');
+            })->get();
+
+        } else {
             $dados = Avaliacao::where(
                 $request->tipo,
                 'like',
                 '%' . $request->valor . '%'
             )->get();
-        } else {
-            $dados = Avaliacao::all();
         }
 
-        return view('avaliacoes.list', ['dados' => $dados]);
+    } else {
+        $dados = Avaliacao::all();
     }
+
+    return view('avaliacoes.list', ['dados' => $dados]);
+}
 }

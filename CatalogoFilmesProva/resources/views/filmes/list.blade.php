@@ -125,18 +125,18 @@
         color: #e2b96f;
     }
 
-    .cardimgbox {
+.cardimgbox {
     height: 420px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #12121f;  /* fundo escuro para preencher o espaço vazio */
+    background: #12121f;
     overflow: hidden;
 }
 .cardimgbox img {
     max-height: 100%;
     max-width: 100%;
-    object-fit: contain;  /* contém a imagem sem cortar */
+    object-fit: contain;
 }
     .estrelanota {
         font-size: 0.75rem;

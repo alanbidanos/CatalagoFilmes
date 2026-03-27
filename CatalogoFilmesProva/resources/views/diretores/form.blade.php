@@ -77,8 +77,20 @@
     </div>
 </form>
 
+<script>
+    function imagem(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                document.getElementById('fotoimg').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
 <style>
-    /* ── Botão voltar ── */
+
     .btn-light.border {
         background: #2a1f1f;
         border-color: #3d2a2a !important;
@@ -89,10 +101,10 @@
         color: #e8d5c4;
     }
 
-    /* ── Título da página ── */
+
     h4 { color: #f0c080; }
 
-    /* ── Formcard ── */
+
     .formcard {
         background: #2a1f1f;
         border: 1px solid #3d2a2a;
@@ -111,7 +123,7 @@
         border-bottom: 1px solid #3d2a2a;
     }
 
-    /* ── Inputs ── */
+
     .form-control, .form-select {
         background-color: #1e1515 !important;
         border-color: #3d2a2a !important;
@@ -124,7 +136,6 @@
     }
     .form-label { color: #b89a85; }
 
-    /* ── Foto circular ── */
     .fotinha {
         position: relative;
         width: 200px;
@@ -162,7 +173,6 @@
     .fotinha:hover .sobrefoto { opacity: 1; }
     .fotinha:hover img { filter: brightness(0.6); }
 
-    /* ── Botões ── */
     .border-top { border-color: #3d2a2a !important; }
     .btn-success {
         background: #f0c080 !important;

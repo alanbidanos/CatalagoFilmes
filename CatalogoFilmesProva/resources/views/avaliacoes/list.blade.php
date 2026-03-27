@@ -6,7 +6,6 @@
     <h4 class="mb-0 titulopagina">Avaliações</h4>
 </div>
 
-{{-- Barra de pesquisa --}}
 <div class="barrapesquisa mb-4">
     <div class="py-3">
         <form action="{{ route('avaliacoes.search') }}" method="post">
@@ -16,7 +15,7 @@
                     <label class="form-label mb-1">Tipo</label>
                     <select name="tipo" class="form-select form-select-sm campoinput">
                         <option value="usuario">Usuário</option>
-                        <option value="filme_id">Filme</option>
+                        <option value="filmes_id">Filme</option>
                         <option value="comentario">Comentário</option>
                         <option value="nota">Nota</option>
                     </select>
@@ -36,7 +35,7 @@
     </div>
 </div>
 
-{{-- Cards de avaliação --}}
+
 <div class="d-flex flex-column gap-3">
     @foreach ($dados as $item)
         @php
@@ -46,7 +45,7 @@
 
         <div class="cardavaliacao">
 
-            {{-- Cabeçalho: avatar + usuário + filme --}}
+
             <div class="d-flex align-items-center gap-3 mb-3">
                 <div class="avatar">{{ $inicial }}</div>
                 <div class="flex-fill">
@@ -54,7 +53,7 @@
                     <div class="avafilme">{{ $item->filme->nome ?? '—' }}</div>
                 </div>
 
-                {{-- Estrelas --}}
+
                 <div class="avanota">
                     @for ($i = 1; $i <= 5; $i++)
                         <span class="{{ $i <= $nota ? 'estrelaon' : 'estrelaoff' }}">★</span>
@@ -63,10 +62,8 @@
                 </div>
             </div>
 
-            {{-- Comentário --}}
             <p class="avacomentario">{{ $item->comentario }}</p>
 
-            {{-- Ações --}}
             <div class="avaacoes">
                 <a href="{{ route('avaliacoes.edit', $item->id) }}" class="btn btneditar btn-sm">Editar</a>
                 <form action="{{ route('avaliacoes.destroy', $item->id) }}" method="post">
@@ -98,7 +95,6 @@
         border-color: #e2b96f;
         box-shadow: 0 4px 24px rgba(226,185,111,0.12);
     }
-
     .avatar {
         width: 46px;
         height: 46px;
@@ -112,7 +108,6 @@
         justify-content: center;
         flex-shrink: 0;
     }
-
     .avausuario {
         font-weight: 700;
         color: #e2b96f;
@@ -123,7 +118,6 @@
         color: #9090aa;
         font-style: italic;
     }
-
     .avanota {
         display: flex;
         align-items: center;
@@ -146,7 +140,6 @@
         border-left: 3px solid #2a2a45;
         padding-left: 0.75rem;
     }
-
     .avaacoes {
         display: flex;
         gap: 0.5rem;

@@ -119,17 +119,26 @@ class FilmeController extends Controller
     }
 
     function search(Request $request)
-    {
-        if (!empty($request->valor)) {
+{
+    if (!empty($request->valor)) {
+
+        if ($request->tipo == 'diretores_id') {
+            $dados = Filme::whereHas('diretor', function ($query) use ($request) {
+                $query->where('nome', 'like', '%' . $request->valor . '%');
+            })->get();
+
+        } else {
             $dados = Filme::where(
                 $request->tipo,
                 'like',
                 '%' . $request->valor . '%'
             )->get();
-        } else {
-            $dados = Filme::all();
         }
 
-        return view('filmes.list', ['dados' => $dados]);
+    } else {
+        $dados = Filme::all();
     }
+
+    return view('filmes.list', ['dados' => $dados]);
+}
 }
