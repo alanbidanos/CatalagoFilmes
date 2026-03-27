@@ -40,7 +40,7 @@ class DiretorController extends Controller
             'pais' => "O :attribute é obrigatório",
         ]);
 
-         $data = $request->all();
+        $data = $request->all();
         $foto = $request->file('foto');
 
         if ($foto) {
@@ -65,34 +65,34 @@ class DiretorController extends Controller
     function update(Request $request, $id)
     {
         $request->validate([
-            'nome' => 'required',
-            'foto' => 'nullable|image',
-            'nascimento' => 'required',
-            'idade' => 'required',
-            'pais' => 'required',
+            'nome'        => 'required',
+            'foto'        => 'nullable|image',
+            'nascimento'  => 'required',
+            'idade'       => 'required',
+            'pais'        => 'required',
         ], [
-            'nome' => "O :attribute é obrigatório",
-            'foto' => "O :attribute não é obrigatório",
+            'nome'       => "O :attribute é obrigatório",
             'nascimento' => "O :attribute é obrigatório",
-            'idade' => "O :attribute é obrigatório",
-            'pais' => "O :attribute é obrigatório",
+            'idade'      => "O :attribute é obrigatório",
+            'pais'       => "O :attribute é obrigatório",
         ]);
 
         $data = $request->all();
+
+
         $foto = $request->file('foto');
-
         if ($foto) {
-            $nome_foto = date('YmdiHs') . "." . $foto->getClientOriginalExtension();
-            $diretorio = "imagem/diretores/";
+            $nome_foto = date('YmdiHs') . '.' . $foto->getClientOriginalExtension();
+            $diretorio = 'imagem/diretores/';
             $foto->storeAs($diretorio, $nome_foto, 'public');
-
             $data['foto'] = $diretorio . $nome_foto;
         }
+
+
 
         Diretor::find($id)->update($data);
         return redirect('diretores');
     }
-
     function destroy($id)
     {
         Diretor::destroy($id);

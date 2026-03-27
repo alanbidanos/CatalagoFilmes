@@ -14,7 +14,7 @@ class AvaliacaoFactory extends Factory
             'usuario' => $this->faker->name,
             'filmes_id' => (Filme::All()->random())->id,
             'comentario' => $this->faker->text(100),
-            'nota' => $this->faker->numberBetween(1, 10),
+            'nota' => $this->faker->numberBetween(1, 5),
         ];
     }
 }

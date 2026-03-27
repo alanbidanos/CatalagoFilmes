@@ -42,3 +42,5 @@ Route::delete('/avaliacoes/{id}', [AvaliacaoController::class, 'destroy'])
 Route::post('/avaliacoes/search', [AvaliacaoController::class, 'search'])->name('avaliacoes.search');
 Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
 Route::put('/avaliacoes/{id}', [AvaliacaoController::class, 'update'])->name('avaliacoes.update');
+
+Route::get('/sobre', function () { return view('sobre');})->name('sobre');

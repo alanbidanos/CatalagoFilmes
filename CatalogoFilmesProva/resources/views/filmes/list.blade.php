@@ -1,89 +1,176 @@
 @extends('main')
-@section('titulo', 'Listagem de Filmes')
+@section('titulo', 'Filmes')
 @section('conteudo')
 
-    <h4>Listagem de Filmes</h4>
 
-    <div class="row">
+
+<div class="d-flex justify-content-center align-items-center mb-3 titulopagina">
+    <h4 class="mb-0 ">Filmes</h4>
+</div>
+
+<div class="barrapesquisa mb-4">
+    <div class="cardbody py-3">
+        <form action="{{ route('filmes.search') }}" method="post">
+            @csrf
+            <div class="row g-2 align-items-end">
+                <div class="col-md-3">
+                    <label class="form-label mb-1">Tipo</label>
+                    <select name="tipo" class="form-select form-select-sm campoinput">
+                        <option value="nome">Nome</option>
+                        <option value="ano">Ano</option>
+                        <option value="duracao">Duração</option>
+                        <option value="nota">Nota</option>
+                        <option value="genero">Gênero</option>
+                        <option value="diretores_id">Diretor</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label mb-1">Valor</label>
+                    <input type="text" class="form-control form-control-sm campoinput" name="valor" placeholder="Pesquisar...">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btnbuscar btn-sm">Buscar</button>
+                </div>
+                <div class="col-auto">
+                    <a href="{{ url('filmes/create') }}" class="btn btnnovo btn-sm">＋ Novo Filme</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-4">
+    @foreach ($dados as $item)
+        @php
+            $nome_foto = !empty($item->capa) ? $item->capa : '\imagem\filmes\sem-imagem.jpeg';
+        @endphp
+
         <div class="col">
-            <form action="{{ route('filmes.search') }}" method="post">
-                @csrf
-                <div class="row">
+            <div class="cardfilme card">
+                <div class="cardimgbox">
+                <img src="/storage/{{ $nome_foto }}" alt="{{ $item->nome }}">
+                </div>
+                <div class="cardbody">
+                    <div class="d-flex justify-content-between align-items-start mb-1">
+                        <h6 class="cardtitulo mb-0" title="{{ $item->nome }}">{{ $item->nome }}</h6>
+                        <span class="badge estrelanota notaestrelacor ms-1">★ {{ $item->nota }}</span>
+                    </div>
 
-                    <div class="col-md-3">
-                        <label class="form-label">Tipo</label>
-                        <select name="tipo" class="form-select">
-                            <option value="nome">Nome</option>
-                            <option value="ano">Ano</option>
-                            <option value="duracao">Duração</option>
-                            <option value="nota">Nota</option>
-                            <option value="genero">Gênero</option>
-                            <option value="diretores_id">Diretor</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Valor</label>
-                        <input type="text" class="form-control" name="valor" placeholder="Pesquisar...">
-                    </div>
-                    <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary"> Buscar</button>
-                    </div>
-                    <div class="col-md-3">
-                        <a href="{{ url('filmes/create') }}" class="btn btn-success"> Novo</a>
+                    <p class="filmedado mb-1">
+                        Ano: <span>{{ $item->ano }}</span>
+                        &nbsp;·&nbsp;
+                        Duração: <span>{{ $item->duracao }}h</span>
+                    </p>
+                    <p class="filmedado mb-1">
+                        Gênero: <span>{{ $item->genero }}</span>
+                    </p>
+                    <p class="filmedado mb-0">
+                        Diretor: <span>{{ $item->diretor->nome ?? '—' }}</span>
+                    </p>
+
+                    <div class="cardacao">
+                        <a href="{{ route('filmes.edit', $item->id) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                        <form action="{{ route('filmes.destroy', $item->id) }}" method="post" class="flex-fill">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm w-100"
+                                onclick="return confirm('Deseja remover o registro?')">
+                                Deletar
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </div>
+    @endforeach
+</div>
 
-    <div class="row">
-        <div class="col">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Capa</th>
-                        <th scope="col">Ano</th>
-                        <th scope="col">Duração</th>
-                        <th scope="col">Nota</th>
-                        <th scope="col">Gênero</th>
-                        <th scope="col">Diretor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($dados as $item)
-                        @php
-                            $nome_foto = !empty($item->capa) ? $item->capa : '\imagem\filme\sem-imagem.jpeg';
-                        @endphp
 
-                        <tr>
-                            <th scope="row">{{ $item->id }}</th>
-                            <td>{{ $item->nome }}</td>
-                            <td> <img src="/storage/{{ $nome_foto }}" class="rounded-circle" width="150px"
-                                    height="150px" alt="foto">
-                            </td>
-                            <td>{{ $item->ano }}</td>
-                            <td>{{ $item->duracao }}</td>
-                            <td>{{ $item->nota }}</td>
-                            <td>{{ $item->genero }}</td>
-                            <td>{{ $item->diretor->nome ?? '' }}</td>
-                            <td><a href="{{ route('filmes.edit', $item->id) }}" class="btn btn-warning">Editar</a></td>
-                            <td>
-                                <form action="{{ route('filmes.destroy', $item->id) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
-                                        onclick="return confirm('Deseja remover o registro?')">
-                                        Deletar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+
+
+<style>
+
+    .cardfilme {
+        border: 1px solid #2a2a45 !important;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+        transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+        background: #1a1a2e;
+        height: 100%;
+        display: flex;
+    flex-direction: column;
+    }
+    .cardfilme:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(226,185,111,0.15);
+        border-color: #e2b96f !important;
+    }
+    .cardfilme img {
+        object-fit: cover;
+        border-radius: 0;
+    }
+    .cardfilme .cardbody {
+        padding: 1rem;
+        margin-top: auto;
+    }
+    .cardfilme .cardtitulo {
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #e2b96f;
+    }
+
+    .cardimgbox {
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #12121f;  /* fundo escuro para preencher o espaço vazio */
+    overflow: hidden;
+}
+.cardimgbox img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;  /* contém a imagem sem cortar */
+}
+    .estrelanota {
+        font-size: 0.75rem;
+        padding: 0.3em 0.65em;
+        border-radius: 20px;
+    }
+    .filmedado {
+        font-size: 0.82rem;
+        font-style: italic;
+        color: #9090aa;
+        margin-bottom: 0.2rem;
+    }
+    .filmedado span {
+        font-weight: bold;
+        color: #e2b96f;
+    }
+    .cardacao {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+    }
+    .cardacao .btn {
+        flex: 1;
+        font-size: 0.82rem;
+        padding: 0.35rem 0.5rem;
+    }
+    .notaestrelacor {
+        background: #e2b96f;
+        color: #1a1a2e;
+        font-weight: 700;
+    }
+
+
+</style>
 
 
 @stop
