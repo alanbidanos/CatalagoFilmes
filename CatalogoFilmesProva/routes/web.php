@@ -8,9 +8,7 @@ use App\Models\Diretor;
 use App\Models\Filme;
 use App\Models\Avaliacao;
 
-Route::get('/', function () {
-    return view('index12');
-});
+Route::get('/', [FilmeController::class, 'index'])->name('filmes.index');
 
 Route::get('/diretores', [DiretorController::class, 'index'])->name('diretores.index');
 Route::get('/diretores/create', [DiretorController::class, 'create'])->name('diretores.create');

@@ -23,35 +23,15 @@ class FilmeFactory extends Factory
     }
 
     private function gerarCapa(): string
-{
-    $pasta    = 'imagem/filmes';
-    $filename = $this->faker->uuid() . '.jpg';
+    {
+        $pasta    = 'imagem/filmes';
+        $filename = $this->faker->uuid() . '.jpg';
+        $seed     = $this->faker->numberBetween(1, 1000);
 
-    $page    = $this->faker->numberBetween(1, 50);
-    $apiKey  = config('services.tmdb.key');
-    $apiUrl  = "https://api.themoviedb.org/3/movie/popular?api_key={$apiKey}&page={$page}";
+        $response = Http::get("https://picsum.photos/seed/{$seed}/400/600");
 
-    try {
-        $response = Http::timeout(10)->get($apiUrl);
+        Storage::disk('public')->put("{$pasta}/{$filename}", $response->body());
 
-        if ($response->successful()) {
-            $filmes   = $response->json('results');
-            $filme    = collect($filmes)->random();
-            $posterPath = $filme['poster_path'] ?? null;
-
-            if ($posterPath) {
-                $imageUrl = "https://image.tmdb.org/t/p/w500{$posterPath}";
-                $image    = Http::timeout(10)->get($imageUrl);
-
-                if ($image->successful()) {
-                    Storage::disk('public')->put("{$pasta}/{$filename}", $image->body());
-                    return "{$pasta}/{$filename}";
-                }
-            }
-        }
-    } catch (\Exception $e) {
-        //PREGUIÇA
+        return "{$pasta}/{$filename}";
     }
-    return "https://picsum.photos/seed/{$this->faker->uuid()}/400/600";
-}
 }
