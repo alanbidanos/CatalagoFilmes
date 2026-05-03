@@ -11,12 +11,12 @@ class DiretorFactory extends Factory
 {
     public function definition(): array
     {
-        $nascimento = $this->faker->numberBetween(1900, 2026);
+        $nascimento = $this->faker->dateTimeBetween('1950-01-01', '2026-12-31')->format('Y-m-d');
         return [
             'nome' => $this->faker->name,
             'foto' => $this->gerarFoto(),
-            'nascimento' => $this->faker->dateTimeBetween('1950-01-01', '2026-12-31')->format('Y-m-d'),
-            'idade' => now()->year - $nascimento,
+            'nascimento' => $nascimento,
+            'idade' => now()->year - (int) substr($nascimento, 0, 4),
             'pais' => $this->faker->country,
         ];
     }

@@ -9,6 +9,8 @@ use Database\Seeders\AvaliacaoSeeder;
 use Database\Seeders\DiretorSeeder;
 use Database\Seeders\FilmeSeeder;
 use Database\Seeders\PremiacaoSeeder;
+use Database\Seeders\EstudioSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +23,7 @@ class DatabaseSeeder extends Seeder
         FilmeSeeder::class,
         AvaliacaoSeeder::class,
         PremiacaoSeeder::class,
+        EstudioSeeder::class,
     ]);
         User::factory()->create([
             'name' => 'Test User',

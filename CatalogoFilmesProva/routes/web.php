@@ -5,10 +5,13 @@ use App\Http\Controllers\DiretorController;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\PremiacaoController;
+use App\Http\Controllers\EstudioController;
 use App\Models\Diretor;
 use App\Models\Filme;
 use App\Models\Avaliacao;
 use App\Models\Premiacao;
+use App\Models\Estudio;
+
 
 Route::get('/', [FilmeController::class, 'index'])->name('filmes.index');
 
@@ -43,7 +46,11 @@ Route::post('/avaliacoes/search', [AvaliacaoController::class, 'search'])->name(
 Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name('avaliacoes.edit');
 Route::put('/avaliacoes/{id}', [AvaliacaoController::class, 'update'])->name('avaliacoes.update');
 
+
+
 Route::get('/sobre', function () { return view('sobre');})->name('sobre');
+
+
 
 Route::get('/premiacoes', [PremiacaoController::class, 'index'])->name('premiacoes.index');
 Route::get('/premiacoes/create', [PremiacaoController::class, 'create'])->name('premiacoes.create');
@@ -54,5 +61,19 @@ Route::delete('/premiacoes/{id}', [PremiacaoController::class, 'destroy'])
 Route::get('/premiacoes/{id}/edit', [PremiacaoController::class, 'edit'])->name('premiacoes.edit');
 Route::put('/premiacoes/{id}', [PremiacaoController::class, 'update'])->name('premiacoes.update');
 
+
+
+Route::get('/estudios', [EstudioController::class, 'index'])->name('estudios.index');
+Route::get('/estudios/create', [EstudioController::class, 'create'])->name('estudios.create');
+Route::post('/estudios', [EstudioController::class, 'store'])->name('estudios.store');
+Route::delete('/estudios/{id}', [EstudioController::class, 'destroy'])
+    ->name('estudios.destroy');
+Route::post('/estudios/search', [EstudioController::class, 'search'])->name('estudios.search');
+Route::get('/estudios/{id}/edit', [EstudioController::class, 'edit'])->name('estudios.edit');
+Route::put('/estudios/{id}', [EstudioController::class, 'update'])->name('estudios.update');
+
+
+
 Route::get('/chart/diretor', [FilmeController::class, 'chartdiretor'])->name('filmes.chartdiretor');
 Route::get('/chart/notas', [FilmeController::class,  'chartnotas'])->name('filmes.chartnotas');
+

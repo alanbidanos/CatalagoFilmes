@@ -34,9 +34,15 @@
                     class="navbtn {{ request()->routeIs('avaliacoes.*') ? 'navbtn-ativo' : '' }}">
                     Avaliações
                 </a>
+
                 <a href="{{ route('premiacoes.index') }}"
                     class="navbtn {{ request()->routeIs('premiacoes.*') ? 'navbtn-ativo' : '' }}">
                     Premiações
+                </a>
+
+                <a href="{{ route('estudios.index') }}"
+                    class="navbtn {{ request()->routeIs('estudios.*') ? 'navbtn-ativo' : '' }}">
+                    Estudios
                 </a>
 
                 <div class="dropdown">
@@ -88,7 +94,7 @@
 
     <footer class="sitefooter">
         <div class="container text-center">
-            <span>Filmoteca &copy; {{ date('Y') }}</span>
+            <span>Filmoteca</span>
         </div>
     </footer>
 
