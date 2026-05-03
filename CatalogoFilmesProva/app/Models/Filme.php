@@ -23,6 +23,10 @@ class Filme extends Model
 {
     return $this->belongsTo(Diretor::class, 'diretores_id');
 }
+public function premiacao()
+{
+    return $this->hasOne(Premiacao::class, 'filmes_id');
+}
 }
 
 

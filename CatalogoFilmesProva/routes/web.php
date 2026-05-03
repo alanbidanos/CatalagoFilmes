@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DiretorController;
 use App\Http\Controllers\FilmeController;
 use App\Http\Controllers\AvaliacaoController;
+use App\Http\Controllers\PremiacaoController;
 use App\Models\Diretor;
 use App\Models\Filme;
 use App\Models\Avaliacao;
+use App\Models\Premiacao;
 
 Route::get('/', [FilmeController::class, 'index'])->name('filmes.index');
 
@@ -42,3 +44,15 @@ Route::get('/avaliacoes/{id}/edit', [AvaliacaoController::class, 'edit'])->name(
 Route::put('/avaliacoes/{id}', [AvaliacaoController::class, 'update'])->name('avaliacoes.update');
 
 Route::get('/sobre', function () { return view('sobre');})->name('sobre');
+
+Route::get('/premiacoes', [PremiacaoController::class, 'index'])->name('premiacoes.index');
+Route::get('/premiacoes/create', [PremiacaoController::class, 'create'])->name('premiacoes.create');
+Route::post('/premiacoes', [PremiacaoController::class, 'store'])->name('premiacoes.store');
+Route::delete('/premiacoes/{id}', [PremiacaoController::class, 'destroy'])
+    ->name('premiacoes.destroy');
+    Route::post('/premiacoes/search', [PremiacaoController::class, 'search'])->name('premiacoes.search');
+Route::get('/premiacoes/{id}/edit', [PremiacaoController::class, 'edit'])->name('premiacoes.edit');
+Route::put('/premiacoes/{id}', [PremiacaoController::class, 'update'])->name('premiacoes.update');
+
+Route::get('/chart/diretor', [FilmeController::class, 'chartdiretor'])->name('filmes.chartdiretor');
+Route::get('/chart/notas', [FilmeController::class,  'chartnotas'])->name('filmes.chartnotas');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\FilmesPorDiretor;
+use App\Charts\DistribuNotas;
 use App\Models\Filme;
 use App\Models\Diretor;
 
@@ -141,4 +143,13 @@ class FilmeController extends Controller
 
     return view('filmes.list', ['dados' => $dados]);
 }
+
+    function chartdiretor(FilmesPorDiretor $chart)
+    {
+        return view('filmes.chartdiretor', ['chart' => $chart->build()]);
+    }
+    function chartnotas(DistribuNotas $chart)
+    {
+        return view('filmes.chartnotas', ['chart' => $chart->build()]);
+    }
 }

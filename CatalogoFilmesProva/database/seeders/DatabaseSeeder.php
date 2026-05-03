@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\AvaliacaoSeeder;
 use Database\Seeders\DiretorSeeder;
 use Database\Seeders\FilmeSeeder;
+use Database\Seeders\PremiacaoSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         DiretorSeeder::class,
         FilmeSeeder::class,
         AvaliacaoSeeder::class,
+        PremiacaoSeeder::class,
     ]);
         User::factory()->create([
             'name' => 'Test User',
