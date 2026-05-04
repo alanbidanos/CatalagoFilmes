@@ -77,3 +77,7 @@ Route::put('/estudios/{id}', [EstudioController::class, 'update'])->name('estudi
 Route::get('/chart/diretor', [FilmeController::class, 'chartdiretor'])->name('filmes.chartdiretor');
 Route::get('/chart/notas', [FilmeController::class,  'chartnotas'])->name('filmes.chartnotas');
 
+
+
+Route::get('/report/ranking', [FilmeController::class,  'reportranking'])->name('filmes.reportranking');
+Route::get('/report/report2', [FilmeController::class,  'report2'])->name('filmes.report2');

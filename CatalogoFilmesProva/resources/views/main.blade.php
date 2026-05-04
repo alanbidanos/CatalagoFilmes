@@ -64,6 +64,25 @@
                     </ul>
                 </div>
 
+                <div class="dropdown">
+                    <a class="navbtn dropdown-toggle {{ request()->routeIs('filmes.report*') ? 'navbtn-ativo' : '' }}"
+                        href="#" role="button" data-bs-toggle="dropdown">
+                        Relatórios
+                    </a>
+                    <ul class="dropdown-menu dropmenucustom">
+                        <li>
+                            <a class="dropdown-item dropmenuitem" href="{{ route('filmes.reportranking') }}">
+                                Rank notas de filmes
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item dropmenuitem" href="{{ route('filmes.report2') }}">
+                                Distribuição de notas
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
                 <a href="{{ url('sobre') }}" class="navbtn {{ request()->is('sobre') ? 'navbtn-ativo' : '' }}">
                     Sobre
                 </a>

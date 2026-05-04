@@ -6,6 +6,8 @@ use App\Charts\FilmesPorDiretor;
 use App\Charts\DistribuNotas;
 use App\Models\Filme;
 use App\Models\Diretor;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 use Illuminate\Http\Request;
 
@@ -151,5 +153,19 @@ class FilmeController extends Controller
     function chartnotas(DistribuNotas $chart)
     {
         return view('filmes.chartnotas', ['chart' => $chart->build()]);
+    }
+
+    function reportranking(){
+        $filmes = Filme::orderByDesc('nota')->get();
+
+        $data = [
+            'titulo' => 'Relatório Ranking das notas dos Filmes',
+            'filmes' => $filmes,
+        ];
+
+        $pdf = Pdf::loadView('filmes.reportranking', $data);
+
+        return $pdf->download('relatorio_ranking_filmes.pdf');
+
     }
 }
