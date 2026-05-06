@@ -19,7 +19,6 @@ class DistribuNotas
 
         $distribuicao = DB::table('filmes')
     ->select('nota', DB::raw('count(1) as qtd'))
-    ->whereNotNull('nota') // ignora filmes sem nota
     ->groupBy('nota')
     ->orderBy('nota', 'asc')
     ->get();
@@ -29,12 +28,12 @@ class DistribuNotas
 
         foreach ($distribuicao as $item) {
             $quantidades[] = $item->qtd;
-            $faixas[] = 'Nota ' . $item->nota;
+            $faixas[] = 'Nº de filmes com a nota ' . $item->nota;
         }
 
         return $this->chart->pieChart()
             ->setTitle('Distribuição de Notas')
-            ->setSubtitle('Avaliações dos filmes')
+            ->setSubtitle('números de filmes com certa nota')
             ->addData($quantidades)
             ->setLabels($faixas);
     }

@@ -51,7 +51,7 @@
                         </div>
 
                         <p class="estudiodado mb-1">
-                            Ano de Fundação: <span>{{ \Carbon\Carbon::parse($item->ano_fundacao)->format('d/m/Y') }}</span>
+                            Ano de Fundação: <span>{{ ($item->ano_fundacao) }}</span>
                         </p>
 
                         <p class="estudiodado mb-0">

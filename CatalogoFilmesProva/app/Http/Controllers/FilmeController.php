@@ -58,7 +58,7 @@ class FilmeController extends Controller
 
         if ($capa) {
             $nome_capa = date('YmdiHs') . "." . $capa->getClientOriginalExtension();
-            $diretorio = "imagem/filme/";
+            $diretorio = "imagem/filmes/";
             $capa->storeAs($diretorio, $nome_capa, 'public');
 
             $data['capa'] = $diretorio . $nome_capa;
@@ -150,6 +150,7 @@ class FilmeController extends Controller
     {
         return view('filmes.chartdiretor', ['chart' => $chart->build()]);
     }
+
     function chartnotas(DistribuNotas $chart)
     {
         return view('filmes.chartnotas', ['chart' => $chart->build()]);

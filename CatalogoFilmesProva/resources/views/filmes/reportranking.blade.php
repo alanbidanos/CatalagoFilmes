@@ -48,7 +48,7 @@
         border-top: 1px solid black;
         text-align: center;
         border-collapse: collapse;
-padding: 5px;
+        padding: 5px;
     }
 
 </style>
