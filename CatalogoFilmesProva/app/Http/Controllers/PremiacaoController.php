@@ -25,11 +25,12 @@ class PremiacaoController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'filmes_id' => 'required',
+            'filmes_id' => 'required|unique:premiacao,filmes_id',
             'ano' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
             'filmes_id' => "O :attribute é obrigatório",
+            'filmes_id.unique' => 'Este filme já possui um prêmio cadastrado.',
             'ano' => "O :attribute é obrigatório",
         ]);
         Premiacao::create($request->all());
@@ -52,11 +53,11 @@ function update(Request $request, $id)
     {
         $request->validate([
             'nome' => 'required',
-            'filmes_id' => 'required',
+            'filmes_id' => 'required|unique:premiacao,filmes_id,' . $id,
             'ano' => 'required',
         ], [
             'nome' => "O :attribute é obrigatório",
-            'filmes_id' => "O :attribute é obrigatório",
+            'filmes_id.unique' => 'Este filme já possui um prêmio cadastrado.',
             'ano' => "O :attribute é obrigatório",
         ]);
 
