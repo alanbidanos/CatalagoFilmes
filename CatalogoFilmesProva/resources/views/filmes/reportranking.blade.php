@@ -27,7 +27,7 @@
             @foreach ($filmes as $item)
                 <tr>
                     <th scope="row">{{ $loop->iteration .'º' }}</th>
-                    <th scope="row">{{ $item->id }}</th>
+                    <th>{{ $item->id }}</th>
                     <td>{{ $item->nome }}</td>
                     <td>{{ $item->ano }}</td>
                     <td>{{ $item->duracao }}</td>

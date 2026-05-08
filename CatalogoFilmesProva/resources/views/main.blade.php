@@ -76,8 +76,8 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item dropmenuitem" href="{{ route('filmes.report2') }}">
-                                Distribuição de notas
+                            <a class="dropdown-item dropmenuitem" href="{{ route('filmes.reportpremios') }}">
+                                Distribuição de prêmios
                             </a>
                         </li>
                     </ul>

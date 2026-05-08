@@ -166,7 +166,21 @@ class FilmeController extends Controller
 
         $pdf = Pdf::loadView('filmes.reportranking', $data);
 
-        return $pdf->download('relatorio_ranking_filmes.pdf');
+        return $pdf->download('report_ranking_filmes.pdf');
 
     }
+
+    public function reportpremios()
+{
+    $filmes = Filme::orderByDesc('nota')->get();
+
+        $data = [
+            'titulo' => 'Relatório Premiações dos Filmes',
+            'filmes' => $filmes,
+        ];
+
+    $pdf = Pdf::loadView('filmes.reportpremios', $data);
+
+        return $pdf->download('report_premios.pdf');
+}
 }

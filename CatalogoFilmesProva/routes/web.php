@@ -80,4 +80,4 @@ Route::get('/chart/notas', [FilmeController::class,  'chartnotas'])->name('filme
 
 
 Route::get('/report/ranking', [FilmeController::class,  'reportranking'])->name('filmes.reportranking');
-Route::get('/report/report2', [FilmeController::class,  'report2'])->name('filmes.report2');
+Route::get('/report/premios', [FilmeController::class,  'reportpremios'])->name('filmes.reportpremios');
